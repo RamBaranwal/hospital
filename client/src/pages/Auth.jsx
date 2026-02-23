@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config';
 import LoginForm from '../components/auth/LoginForm';
 import RegisterForm from '../components/auth/RegisterForm';
 import '../styles/Auth.css';
@@ -14,7 +15,6 @@ const Auth = () => {
     // Normalize role to lower case to avoid case sensitivity issues
     const normalizedRole = role ? role.toLowerCase() : '';
 
-    const API_URL = 'http://localhost:5000';
 
     const handleLogin = async (formData) => {
         try {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../../config';
 import DoctorNavbar from '../../components/doctor/DoctorNavbar';
 import '../../styles/DoctorDashboard.css';
 
@@ -19,7 +20,7 @@ const DoctorDashboard = () => {
 
     const fetchAppointments = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/doctor-panel/${user._id}/appointments`);
+            const res = await axios.get(`${API_URL}/api/doctor-panel/${user._id}/appointments`);
             setAppointments(res.data);
         } catch (err) {
             console.error("Error fetching appointments", err);
@@ -28,7 +29,7 @@ const DoctorDashboard = () => {
 
     const handleStatusUpdate = async (id, status) => {
         try {
-            await axios.put(`http://localhost:5000/api/doctor-panel/appointment/${id}`, { status });
+            await axios.put(`${API_URL}/api/doctor-panel/appointment/${id}`, { status });
             // Optimistic update
             setAppointments(appointments.map(appt =>
                 appt._id === id ? { ...appt, status } : appt

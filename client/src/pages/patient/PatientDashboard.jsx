@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../../config';
 import PatientNavbar from '../../components/patient/PatientNavbar';
 import AppointmentList from '../../components/patient/AppointmentList';
 import BookingForm from '../../components/patient/BookingForm';
@@ -58,7 +59,7 @@ const PatientDashboard = () => {
         const fetchAvailability = async () => {
             if (bookingData.doctorId && bookingData.date) {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/appointments/availability`, {
+                    const res = await axios.get(`${API_URL}/api/appointments/availability`, {
                         params: {
                             doctorId: bookingData.doctorId,
                             date: bookingData.date
@@ -81,7 +82,7 @@ const PatientDashboard = () => {
             // Fetch doctors for selected department
             const fetchDoctors = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/doctors?department=${bookingData.department}`);
+                    const res = await axios.get(`${API_URL}/api/doctors?department=${bookingData.department}`);
                     setDoctors(res.data);
                     // Clear previous doctor selection if not in new list (or just always clear for safety)
                     if (!res.data.find(d => d._id === bookingData.doctorId)) {
@@ -100,7 +101,7 @@ const PatientDashboard = () => {
 
     const fetchAppointments = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/appointments/patient/${user._id}`);
+            const res = await axios.get(`${API_URL}/api/appointments/patient/${user._id}`);
             setAllAppointments(res.data);
         } catch (err) {
             console.error("Error fetching appointments", err);
@@ -123,7 +124,7 @@ const PatientDashboard = () => {
                 patientId: user._id,
                 ...bookingData
             };
-            const res = await axios.post('http://localhost:5000/api/appointments/book', payload);
+            const res = await axios.post(`${API_URL}/api/appointments/book`, payload);
             alert(res.data.message);
             // Reset form and switch to view tab
             setBookingData({
@@ -144,7 +145,7 @@ const PatientDashboard = () => {
         if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
 
         try {
-            await axios.put(`http://localhost:5000/api/appointments/cancel/${apptId}`);
+            await axios.put(`${API_URL}/api/appointments/cancel/${apptId}`);
             alert("Appointment cancelled successfully");
             fetchAppointments(); // Refresh list
         } catch (err) {
