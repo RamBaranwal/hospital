@@ -1,0 +1,301 @@
+/* Doctor Dashboard & Table Styles */
+:root {
+    --primary-blue: #2c5282;
+    --secondary-blue: #4299e1;
+    --accent-red: #e53e3e;
+    --accent-green: #38a169;
+    --light-bg: #ebf8ff;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.doctor-dashboard-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f7fafc 0%, #e2e8f0 100%);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Navbar specific to dashboard, can be global but scoped here if needed */
+.doctor-navbar {
+    background: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.doctor-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    letter-spacing: -0.5px;
+}
+
+.logout-button {
+    background: transparent;
+    color: #e53e3e;
+    border: 2px solid #e53e3e;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+    background: #e53e3e;
+    color: white;
+    box-shadow: 0 4px 6px rgba(229, 62, 62, 0.2);
+}
+
+.doctor-content-container {
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.dashboard-header h1 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #2c5282, #4299e1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-header h2 {
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-top: 0;
+    opacity: 0.9;
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.dashboard-section h3 {
+    color: var(--primary-blue);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid #edf2f7;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Standard Table Styles */
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 1rem;
+}
+
+.appointments-table th {
+    padding: 16px;
+    text-align: left;
+    color: #4a5568;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    background-color: #f7fafc;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.appointments-table tr {
+    background: white;
+    transition: background-color 0.2s;
+}
+
+.appointments-table tbody tr {
+    border-bottom: 1px solid #edf2f7;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.appointments-table tbody tr td:first-child,
+.appointments-table tbody tr td:last-child {
+    border-radius: 0;
+}
+
+.appointments-table td {
+    padding: 16px;
+    color: #2d3748;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.appointments-table tbody tr:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: #f8fafc;
+    z-index: auto;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: capitalize;
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+
+.status-badge.pending {
+    background-color: #fffaf0;
+    color: #d69e2e;
+    border: 1px solid #fbd38d;
+}
+
+.status-badge.confirmed {
+    background-color: #f0fff4;
+    color: #38a169;
+    border: 1px solid #9ae6b4;
+}
+
+.status-badge.completed {
+    background-color: #ebf8ff;
+    color: #3182ce;
+    border: 1px solid #90cdf4;
+}
+
+.status-badge.cancelled,
+.status-badge.rejected {
+    background-color: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #feb2b2;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    opacity: 1;
+    /* Always visible */
+}
+
+.appointments-table tr:hover .action-buttons {
+    opacity: 1;
+}
+
+.btn-accept,
+.btn-reject,
+.btn-done {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+}
+
+.btn-accept {
+    background: #38a169;
+    color: white;
+}
+
+.btn-accept:hover {
+    background: #2f855a;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-reject {
+    background: #e53e3e;
+    color: white;
+}
+
+.btn-reject:hover {
+    background: #c53030;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-done {
+    background: #3182ce;
+    color: white;
+}
+
+.btn-done:hover {
+    background: #2b6cb0;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content-container {
+        padding: 1.5rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+
+    .appointments-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .btn-accept,
+    .btn-reject,
+    .btn-done {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}

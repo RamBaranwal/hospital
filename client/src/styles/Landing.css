@@ -1,0 +1,196 @@
+/* Creative Split-Screen Landing - Medical Theme */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+.creative-landing {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: #0f172a;
+}
+
+/* ===== Sides ===== */
+.split-side {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+/* Hover Effect: Expansion */
+.creative-landing.hover-left .patient-side {
+    flex: 2;
+}
+
+.creative-landing.hover-right .doctor-side {
+    flex: 2;
+}
+
+/* ===== Styling Each Side ===== */
+.patient-side {
+    background: linear-gradient(135deg, #df7c7c, #f45d5d);
+}
+
+.doctor-side {
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+}
+
+/* ===== Content & Typography ===== */
+.side-content {
+    z-index: 10;
+    max-width: 400px;
+    opacity: 0.9;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.floating-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+    transition: transform 0.5s ease;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Button Styling (Visible on Large Screens) */
+.action-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.split-side:hover .action-btn {
+    background: white;
+    color: #333;
+    border-color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.split-side:hover .floating-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* ===== Brand Circle Center ===== */
+.center-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    pointer-events: none;
+}
+
+.brand-circle {
+    width: 140px;
+    height: 140px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.brand-circle h1 {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.brand-circle span {
+    color: #0d9488;
+}
+
+.brand-circle p {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* ===== Background Patterns ===== */
+.bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+    opacity: 0.6;
+    z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .creative-landing {
+        flex-direction: column;
+    }
+
+    .center-brand {
+        display: none;
+    }
+
+    .split-side {
+        width: 100%;
+        height: 50%;
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .floating-icon {
+        font-size: 3rem;
+    }
+
+    .creative-landing.hover-left .patient-side,
+    .creative-landing.hover-right .doctor-side {
+        flex: 1;
+        /* Disable expansion on mobile */
+    }
+}
